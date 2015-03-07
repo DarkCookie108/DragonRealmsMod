@@ -17,13 +17,13 @@ public class TFM_Admin
     private String lastLoginName;
     private final String loginMessage;
     private final boolean isSeniorAdmin;
-    private final boolean isTelnetAdmin;
+    private final boolean isSuperAdmin;
     private final List<String> consoleAliases;
     private final List<String> ips;
     private Date lastLogin;
     private boolean isActivated;
 
-    public TFM_Admin(UUID uuid, String lastLoginName, Date lastLogin, String loginMessage, boolean isSeniorAdmin, boolean isTelnetAdmin, boolean isActivated)
+    public TFM_Admin(UUID uuid, String lastLoginName, Date lastLogin, String loginMessage, boolean isSeniorAdmin, boolean isSuperAdmin, boolean isActivated)
     {
         this.uuid = uuid;
         this.lastLoginName = lastLoginName;
@@ -31,7 +31,7 @@ public class TFM_Admin
         this.lastLogin = lastLogin;
         this.loginMessage = loginMessage;
         this.isSeniorAdmin = isSeniorAdmin;
-        this.isTelnetAdmin = isTelnetAdmin;
+        this.isSuperAdmin = isSuperAdmin;
         this.consoleAliases = new ArrayList<String>();
         this.isActivated = isActivated;
     }
@@ -44,7 +44,7 @@ public class TFM_Admin
         this.lastLogin = TFM_Util.stringToDate(section.getString("last_login", TFM_Util.dateToString(new Date(0L))));
         this.loginMessage = section.getString("custom_login_message", "");
         this.isSeniorAdmin = section.getBoolean("is_senior_admin", false);
-        this.isTelnetAdmin = section.getBoolean("is_telnet_admin", false);
+        this.isSuperAdmin = section.getBoolean("is_super_admin", false);
         this.consoleAliases = section.getStringList("console_aliases");
         this.isActivated = section.getBoolean("is_activated", true);
 
@@ -65,7 +65,7 @@ public class TFM_Admin
         output.append("- Last Login: ").append(TFM_Util.dateToString(lastLogin)).append("\n");
         output.append("- Custom Login Message: ").append(loginMessage).append("\n");
         output.append("- Is Senior Admin: ").append(isSeniorAdmin).append("\n");
-        output.append("- Is Telnet Admin: ").append(isTelnetAdmin).append("\n");
+        output.append("- Is Super Admin: ").append(isSuperAdmin).append("\n");
         output.append("- Console Aliases: ").append(StringUtils.join(consoleAliases, ", ")).append("\n");
         output.append("- Is Activated: ").append(isActivated);
 
@@ -136,9 +136,9 @@ public class TFM_Admin
         return isSeniorAdmin;
     }
 
-    public boolean isTelnetAdmin()
+    public boolean isSuperAdmin()
     {
-        return isTelnetAdmin;
+        return isSuperAdmin;
     }
 
     public List<String> getConsoleAliases()
