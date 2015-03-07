@@ -10,8 +10,15 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) if you are interested in developin
 
 DragonRealmsMod is a Spigot server plugin to designed to give all people free op, a huge success mess in those mod including new ranks, commands and new variety of things. 
 There won't be any public releases from Nobody-11 DragonRealmsMod. (I believe this will be a success mod)
+
 These Releases will start with Beta, Alpha, Pre-Release then Release.
+
 BETA = Test / Will Lag / Bugs
+
 ALPHA = Still Test / Few Lag / Some Bugs
+
 PRE-RELEASE = Test Completed / Maybe Lag / Maybe Bugs
-RELEASE = Test Completed (Ready to move up the version) / No Lag (unless someone DDOS / Try to crash the server) / No Bugs (Unless someone mess it up)
+
+RELEASE = Test Completed (Ready to move up the version) / No Lag (unless someone DDOS / Try to crash the server) / No 
+
+Bugs (Unless someone mess it up)
