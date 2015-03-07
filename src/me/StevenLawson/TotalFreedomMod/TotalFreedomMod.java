@@ -38,7 +38,7 @@ public class TotalFreedomMod extends JavaPlugin
     public static final int MAX_USERNAME_LENGTH = 20;
     //
     public static final String CONFIG_FILENAME = "config.yml";
-    public static final String SUPERADMIN_FILENAME = "superadmin.yml";
+    public static final String ADMIN_FILENAME = "admin.yml";
     public static final String PERMBAN_FILENAME = "permban.yml";
     public static final String UUID_FILENAME = "uuids.db";
     public static final String PROTECTED_AREA_FILENAME = "protectedareas.dat";
@@ -77,7 +77,7 @@ public class TotalFreedomMod extends JavaPlugin
     public void onEnable()
     {
         TFM_Log.info("Made by Madgeek1450 and DarthSalamon");
-        TFM_Log.info("Compiled " + buildDate + " by " + buildCreator);
+        TFM_Log.info("Compiled by _Nobody_");
 
         final TFM_Util.MethodTimer timer = new TFM_Util.MethodTimer();
         timer.start();
@@ -94,7 +94,7 @@ public class TotalFreedomMod extends JavaPlugin
 
         // Create backups
         TFM_Util.createBackups(CONFIG_FILENAME, true);
-        TFM_Util.createBackups(SUPERADMIN_FILENAME);
+        TFM_Util.createBackups(ADMIN_FILENAME);
         TFM_Util.createBackups(PERMBAN_FILENAME);
 
         // Load services
@@ -114,7 +114,7 @@ public class TotalFreedomMod extends JavaPlugin
         }
 
         // Start SuperAdmin service
-        server.getServicesManager().register(Function.class, TFM_AdminList.SUPERADMIN_SERVICE, plugin, ServicePriority.Normal);
+        server.getServicesManager().register(Function.class, TFM_AdminList.ADMIN_SERVICE, plugin, ServicePriority.Normal);
 
         final PluginManager pm = server.getPluginManager();
         pm.registerEvents(new TFM_EntityListener(), plugin);
