@@ -234,8 +234,8 @@ public class TFM_CommandLoader
                 case SENIOR:
                     _description = "Senior " + (this.getSource() == SourceType.ONLY_CONSOLE ? "Console" : "") + " Command - " + _description;
                     break;
-                case SUPER:
-                    _description = "Superadmin Command - " + _description;
+                case ADMIN:
+                    _description = "Admin Command - " + _description;
                     break;
                 case OP:
                     _description = "OP Command - " + _description;
