@@ -84,7 +84,7 @@ public class TFM_PlayerListener implements Listener
                         }
 
                         player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.COOKIE, 1));
-                        player.sendMessage(ChatColor.GRAY + "Water buckets are currently disabled.");
+                        player.sendMessage(ChatColor.RED + "Water buckets are currently disabled.");
                         event.setCancelled(true);
                         break;
                     }
@@ -97,7 +97,7 @@ public class TFM_PlayerListener implements Listener
                         }
 
                         player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.COOKIE, 1));
-                        player.sendMessage(ChatColor.GRAY + "Lava buckets are currently disabled.");
+                        player.sendMessage(ChatColor.RED + "Lava buckets are currently disabled.");
                         event.setCancelled(true);
                         break;
                     }
@@ -110,7 +110,7 @@ public class TFM_PlayerListener implements Listener
                         }
 
                         player.getInventory().clear(player.getInventory().getHeldItemSlot());
-                        player.sendMessage(ChatColor.GRAY + "TNT minecarts are currently disabled.");
+                        player.sendMessage(ChatColor.RED + "TNT minecarts are currently disabled.");
                         event.setCancelled(true);
                         break;
                     }
@@ -125,7 +125,7 @@ public class TFM_PlayerListener implements Listener
                 {
                     case STICK:
                     {
-                        if (!TFM_AdminList.isSuperAdmin(player))
+                        if (!TFM_AdminList.isAdmin(player))
                         {
                             break;
                         }
@@ -302,7 +302,7 @@ public class TFM_PlayerListener implements Listener
                         // Clownfish
                         if (TFM_DepreciationAggregator.getData_MaterialData(event.getItem().getData()) == 2)
                         {
-                            if (TFM_AdminList.isSeniorAdmin(player, true) || TFM_AdminList.isTelnetAdmin(player, true))
+                            if (TFM_AdminList.isSeniorAdmin(player, true) || TFM_AdminList.isSuperAdmin(player, true))
                             {
                                 boolean didHit = false;
 
@@ -386,7 +386,7 @@ public class TFM_PlayerListener implements Listener
         final Player player = event.getPlayer();
         final TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
 
-        if (!TFM_AdminList.isSuperAdmin(player) && playerdata.isFrozen())
+        if (!TFM_AdminList.isAdmin(player) && playerdata.isFrozen())
         {
             player.setFlying(true);
             event.setTo(playerdata.getFreezeLocation());
@@ -453,7 +453,7 @@ public class TFM_PlayerListener implements Listener
         }
 
         // Freeze
-        if (!TFM_AdminList.isSuperAdmin(player) && playerdata.isFrozen())
+        if (!TFM_AdminList.isAdmin(player) && playerdata.isFrozen())
         {
             player.setFlying(true);
             event.setTo(playerdata.getFreezeLocation());
@@ -593,9 +593,9 @@ public class TFM_PlayerListener implements Listener
             // Check for muted
             if (playerdata.isMuted())
             {
-                if (!TFM_AdminList.isSuperAdmin(player))
+                if (!TFM_AdminList.isAdmin(player))
                 {
-                    player.sendMessage(ChatColor.RED + "You are muted, STFU! - You will be unmuted in 5 minutes.");
+                    player.sendMessage(ChatColor.BLUE + "[DragonRealms] " + ChatColor.RED + "You are muted!");
                     event.setCancelled(true);
                     return;
                 }
@@ -717,11 +717,11 @@ public class TFM_PlayerListener implements Listener
             event.setCancelled(true);
         }
 
-        if (!TFM_AdminList.isSuperAdmin(player))
+        if (!TFM_AdminList.isAdmin(player))
         {
             for (Player pl : Bukkit.getOnlinePlayers())
             {
-                if (TFM_AdminList.isSuperAdmin(pl) && TFM_PlayerData.getPlayerData(pl).cmdspyEnabled())
+                if (TFM_AdminList.isAdmin(pl) && TFM_PlayerData.getPlayerData(pl).cmdspyEnabled())
                 {
                     TFM_Util.playerMsg(pl, player.getName() + ": " + command);
                 }
@@ -822,12 +822,12 @@ public class TFM_PlayerListener implements Listener
             // Verify strict IP match
             if (!TFM_AdminList.isIdentityMatched(player))
             {
-                playerdata.setSuperadminIdVerified(false);
+                playerdata.setAdminIdVerified(false);
                 TFM_Util.bcastMsg("Warning: " + player.getName() + " is an admin, but is using an account not registered to one of their ip-list.", ChatColor.RED);
             }
             else
             {
-                playerdata.setSuperadminIdVerified(true);
+                playerdata.setAdminIdVerified(true);
                 TFM_AdminList.updateLastLogin(player);
             }
         }
@@ -842,7 +842,7 @@ public class TFM_PlayerListener implements Listener
             player.setGameMode(GameMode.SURVIVAL);
             TFM_PlayerData.getPlayerData(player).setFrozen(true);
         }
-        else if (TFM_AdminList.isSuperAdmin(player) || TFM_Util.DEVELOPERS.contains(player.getName()))
+        else if (TFM_AdminList.isAdmin(player) || TFM_Util.DEVELOPERS.contains(player.getName()))
         {
             TFM_Util.bcastMsg(ChatColor.AQUA + player.getName() + " is " + TFM_PlayerRank.getLoginMessage(player));
         }
@@ -854,20 +854,51 @@ public class TFM_PlayerListener implements Listener
             name = ChatColor.DARK_PURPLE + name;
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
         }
+        else if (player.getName().equals("Master_Blue"))
+        {
+            player.setPlayerListName(ChatColor.AQUA + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Founder&8]");
+            TFM_Util.bcastMsg(ChatColor.GREEN + "ALL HAIL MASTER_BLUE!");
+        }
+        else if (player.getName().equals("TheGoldenCoder"))
+        {
+            player.setPlayerListName(ChatColor.YELLOW + "TheGold" + ChatColor.GOLD + "en" + ChatColor.Blue + "Coder");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Founder&8]");
+        }
+        else if (player.getName()equals("Agent_L"))
+        {
+            player.setPlayerListName(ChatColor.PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Founder&8]");
+        }
+        else if (player.getName().equals("xfilez"))
+        {
+            player.setPlayerListName(ChatColor.RED + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&cCOS&8]");
+        }
+        else if (TFM_Util.SYSTEMS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4Sys-Admin&8]");
+        }
+        else if (TFM_Util.SPECIALS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.YELLOW + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&eSpec-Exec&8]");
+        }
         else if (TFM_AdminList.isSeniorAdmin(player))
         {
             name = ChatColor.LIGHT_PURPLE + name;
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior Admin&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior&8]");
         }
-        else if (TFM_AdminList.isTelnetAdmin(player, true))
+        else if (TFM_AdminList.isSuperAdmin(player, true))
         {
-            name = ChatColor.DARK_GREEN + name;
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
+            name = ChatColor.AQUA + name;
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&bSuper&8]");
         }
         else if (TFM_AdminList.isSuperAdmin(player))
         {
-            name = ChatColor.AQUA + name;
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
+            name = ChatColor.BLUE + name;
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Admin&8]");
         }
 
         try
@@ -885,7 +916,7 @@ public class TFM_PlayerListener implements Listener
             {
                 if (TFM_ConfigEntry.ADMIN_ONLY_MODE.getBoolean())
                 {
-                    player.sendMessage(ChatColor.RED + "Server is currently closed to non-superadmins.");
+                    player.sendMessage(ChatColor.RED + "DragonRealms is closed to non-admins!");
                 }
 
                 if (TotalFreedomMod.lockdownEnabled)
