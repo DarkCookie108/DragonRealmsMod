@@ -12,9 +12,14 @@ public enum TFM_PlayerRank
     IMPOSTOR("an " + ChatColor.YELLOW + ChatColor.UNDERLINE + "Impostor", ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
-    SUPER("a " + ChatColor.GOLD + "Super Admin", ChatColor.GOLD + "[SA]"),
-    TELNET("a " + ChatColor.DARK_GREEN + "Super Telnet Admin", ChatColor.DARK_GREEN + "[STA]"),
+    ADMIN("an " + ChatColor.BLUE + "Admin", ChatColor.GOLD + "[Admin]"),
+    SUPER("a " + ChatColor.GOLD + "Super Admin", ChatColor.DARK_GREEN + "[SA]"),
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
+    FOUNDER("a " + ChatColor.BLUE + "Founder", ChatColor.BLUE + "[Founder]"),
+    CO_FOUNDER("a " + ChatColor.PURPLE + "Co-Founder", ChatColor.PURPLE + "[Co-Founder]"),
+    SYSTEM("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]"),
+    SPECIAL("a " + ChatColor.YELLOW + "Special Executive", ChatColor.YELLOW + "[Spec-Exec]"),
+    COS("the " + ChatColor.RED + "Chief of Security", ChatColor.RED + "[COS]"),
     OWNER("the " + ChatColor.BLUE + "Owner", ChatColor.BLUE + "[Owner]"),
     CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
     private final String loginMessage;
@@ -69,6 +74,33 @@ public enum TFM_PlayerRank
         {
             return DEVELOPER;
         }
+        
+        else if (sender.getName().equals("xfilez"))
+        {
+            return COS;
+        }
+        
+        else if (FOUNDERS.contains(sender.getName()))
+        {
+            return FOUNDER;
+        }
+        
+        else if (SYSTEMS.contains(sender.getName()))
+        {
+            return SYSTEM;
+        }
+        
+        else if (CO_FOUNDERS.contains(sender.getName()))
+        {
+            return CO_FOUNDER;
+        }
+        
+        else if (SPECIALS.contains(sender.getName()))
+        {
+            return SPECIAL;
+        }
+        
+        if 
 
         final TFM_Admin entry = TFM_AdminList.getEntryByIp(TFM_Util.getIp((Player) sender));
 
@@ -85,13 +117,13 @@ public enum TFM_PlayerRank
             {
                 rank = SENIOR;
             }
-            else if (entry.isTelnetAdmin())
+            else if (entry.isSuperAdmin())
             {
-                rank = TELNET;
+                rank = SUPER;
             }
             else
             {
-                rank = SUPER;
+                rank = ADMIN;
             }
         }
         else
