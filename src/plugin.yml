@@ -3,6 +3,6 @@ main: me.StevenLawson.TotalFreedomMod.TotalFreedomMod
 version: 4.4
 description: Plugin for the Dragon Realms server.
 softdepend: [BukkitTelnet, WorldEdit, Essentials]
-authors: [Madgeek1450, Prozza, _Nobody_]
+authors: [Madgeek1450, Prozza, _Nobody_, Elmon11]
 
 # plugin.yml is no longer used to define commands.
