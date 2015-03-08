@@ -68,7 +68,6 @@ public class TFM_Util
     public static final Map<String, EntityType> mobtypes = new HashMap<String, EntityType>();
     // See https://github.com/TotalFreedom/License - None of the listed names may be removed.
     public static final List<String> DEVELOPERS = Arrays.asList("Madgeek1450", "Prozza", "DarthSalmon", "AcidicCyanide", "Wild1145", "WickedGamingUK", "reuben4545","Elmon11", "ThePheonixBlader");
-
     private static final Random RANDOM = new Random();
     public static String DATE_STORAGE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     public static final Map<String, ChatColor> CHAT_COLOR_NAMES = new HashMap<String, ChatColor>();
@@ -230,7 +229,7 @@ public class TFM_Util
 
         if (player.getWorld().getName().equalsIgnoreCase(targetWorld))
         {
-            playerMsg(player, "Going to main world.", ChatColor.GRAY);
+            playerMsg(player, "Going to main world.", ChatColor.YELLOW);
             player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
             return;
         }
@@ -239,7 +238,7 @@ public class TFM_Util
         {
             if (world.getName().equalsIgnoreCase(targetWorld))
             {
-                playerMsg(player, "Going to world: " + targetWorld, ChatColor.GRAY);
+                playerMsg(player, "Going to world: " + targetWorld, ChatColor.YELLOW);
                 player.teleport(world.getSpawnLocation());
                 return;
             }
@@ -917,9 +916,9 @@ public class TFM_Util
 
         for (Player player : Bukkit.getOnlinePlayers())
         {
-            if (TFM_AdminList.isSuperAdmin(player))
+            if (TFM_AdminList.isAdmin(player))
             {
-                player.sendMessage("[" + ChatColor.AQUA + "ADMIN" + ChatColor.WHITE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.AQUA + message);
+                player.sendMessage("[" + ChatColor.AQUA + "ADMIN CHAT" + ChatColor.WHITE + "] " + ChatColor.LIGHT_PURPLE + name + ": " + ChatColor.YELLOW + message);
             }
         }
     }
