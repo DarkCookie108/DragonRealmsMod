@@ -14,11 +14,11 @@ import org.bukkit.entity.Player;
 
 public abstract class TFM_Command
 {
-    public static final String MSG_NO_PERMS = ChatColor.YELLOW + "You do not have permission to use this command.";
-    public static final String YOU_ARE_OP = ChatColor.YELLOW + "You are now op!";
-    public static final String YOU_ARE_NOT_OP = ChatColor.YELLOW + "You are no longer op!";
+    public static final String MSG_NO_PERMS = ChatColor.BLUE + "[DragonRealms] " + ChatColor.RED + "You do not have permission to do this command!";
+    public static final String YOU_ARE_OP = ChatColor.BLUE + "[DragonRealms] " + ChatColor.GREEN + "You are op!";
+    public static final String YOU_ARE_NOT_OP = ChatColor.BLUE + "[DragonRealms] " + ChatColor.RED + "You are no longer op!";
     public static final String NOT_FROM_CONSOLE = "This command may not be used from the console.";
-    public static final String PLAYER_NOT_FOUND = ChatColor.GRAY + "Player not found!";
+    public static final String PLAYER_NOT_FOUND = ChatColor.BLUE + "[DragonRealms] " + ChatColor.RED + "Player not Found!";
     protected TotalFreedomMod plugin;
     protected Server server;
     private CommandSender commandSender;
@@ -72,10 +72,10 @@ public abstract class TFM_Command
             return true;
         }
 
-        boolean isSuper = TFM_AdminList.isSuperAdmin(commandSender);
+        boolean isAdmin = TFM_AdminList.isAdmin(commandSender);
         boolean isSenior = false;
 
-        if (isSuper)
+        if (isAdmin)
         {
             isSenior = TFM_AdminList.isSeniorAdmin(commandSender);
         }
@@ -126,7 +126,7 @@ public abstract class TFM_Command
             return true;
         }
 
-        if (level == AdminLevel.SUPER && !isSuper)
+        if (level == AdminLevel.ADMIN && !isAdmin)
         {
             return false;
         }
