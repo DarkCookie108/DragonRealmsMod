@@ -19,7 +19,7 @@ server:
 
   # All players who show up as owner
   owners:
-    - _Nobody_
+    - Master_Blue
 
   # URL players should appeal for bans at
   ban_url: http://dragonrealms.boards.net/
