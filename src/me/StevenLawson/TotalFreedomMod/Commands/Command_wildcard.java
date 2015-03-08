@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.ADMIN, source = SourceType.BOTH)
 @CommandParameters(description = "Run any command on all users, username placeholder = ?.", usage = "/<command> [fluff] ? [fluff] ?")
 public class Command_wildcard extends TFM_Command
 {
@@ -36,7 +36,7 @@ public class Command_wildcard extends TFM_Command
         }
         if (args[0].equals("saconfig"))
         {
-            playerMsg("WOA, WTF are you trying to do???", ChatColor.RED);
+            playerMsg("WHOA, WTF are you trying to do???", ChatColor.RED);
             return true;
         }
 
