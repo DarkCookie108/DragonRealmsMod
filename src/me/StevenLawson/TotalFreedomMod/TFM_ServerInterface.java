@@ -84,10 +84,10 @@ public class TFM_ServerInterface
 
         // Check if player is admin
         // Not safe to use TFM_Util.isSuperAdmin(player) because player.getAddress() will return a null until after player login.
-        final boolean isAdmin = TFM_AdminList.isSuperAdminSafe(uuid, ip);
+        final boolean isAdmin = TFM_AdminList.isAdminSafe(uuid, ip);
 
         // Validation below this point
-        if (isAdmin) // Player is superadmin
+        if (isAdmin) // Player is admin
         {
             // Force-allow log in
             event.allow();
@@ -106,7 +106,7 @@ public class TFM_ServerInterface
             {
                 for (Player onlinePlayer : server.getOnlinePlayers())
                 {
-                    if (!TFM_AdminList.isSuperAdmin(onlinePlayer))
+                    if (!TFM_AdminList.isAdmin(onlinePlayer))
                     {
                         onlinePlayer.kickPlayer("You have been kicked to free up room for an admin.");
                         count--;
