@@ -20,13 +20,13 @@ public class TFM_ServerListener implements Listener
 
         if (TFM_BanManager.isIpBanned(ip))
         {
-            event.setMotd(ChatColor.RED + "You are banned.");
+            event.setMotd(ChatColor.RED + "You are banned from this server.");
             return;
         }
 
         if (TFM_ConfigEntry.ADMIN_ONLY_MODE.getBoolean())
         {
-            event.setMotd(ChatColor.RED + "Server is closed.");
+            event.setMotd(ChatColor.RED + "Server is closed to non-admin.");
             return;
         }
 
@@ -38,7 +38,7 @@ public class TFM_ServerListener implements Listener
 
         if (Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers())
         {
-            event.setMotd(ChatColor.RED + "Server is full.");
+            event.setMotd(ChatColor.RED + "I am sorry but the server is full.");
             return;
         }
 
