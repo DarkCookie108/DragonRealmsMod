@@ -29,7 +29,7 @@ public class TFM_TelnetListener implements Listener
 
         final TFM_Admin admin = TFM_AdminList.getEntryByIp(ip, true);
 
-        if (admin == null || !admin.isActivated() || !admin.isTelnetAdmin())
+        if (admin == null || !admin.isActivated() || !admin.isSuperAdmin())
         {
             return;
         }
@@ -58,7 +58,7 @@ public class TFM_TelnetListener implements Listener
             final Map<String, Object> playerTags = entry.getValue();
 
             boolean isAdmin = false;
-            boolean isTelnetAdmin = false;
+            boolean isSuperAdmin = false;
             boolean isSeniorAdmin = false;
 
             final TFM_Admin admin = TFM_AdminList.getEntry(player);
@@ -72,7 +72,7 @@ public class TFM_TelnetListener implements Listener
             }
 
             playerTags.put("tfm.admin.isAdmin", isAdmin);
-            playerTags.put("tfm.admin.isTelnetAdmin", isTelnetAdmin);
+            playerTags.put("tfm.admin.isSuperAdmin", isSuperAdmin);
             playerTags.put("tfm.admin.isSeniorAdmin", isSeniorAdmin);
 
             playerTags.put("tfm.playerdata.getTag", TFM_PlayerData.getPlayerData(player).getTag());
