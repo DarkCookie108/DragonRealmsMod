@@ -19,6 +19,6 @@ ALPHA = Still Test / Few Lag / Some Bugs
 
 PRE-RELEASE = Test Completed / Maybe Lag / Maybe Bugs
 
-RELEASE = Test Completed (Ready to move up the version) / No Lag (unless someone DDOS / Try to crash the server) / No 
+RELEASE = Test Completed (Ready to move up the version) / No Lag (unless someone DDOS / Try to crash the server) / No Bugs (Unless someone mess it up)
 
-Bugs (Unless someone mess it up)
+There are a plugin to support this server mod, you can find it by [Clicking here.](https://github.com/Nobody-11/DragonUtil-Plugin)
