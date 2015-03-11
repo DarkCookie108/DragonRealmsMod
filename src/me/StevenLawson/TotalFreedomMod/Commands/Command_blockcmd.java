@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.ADMIN, source = SourceType.BOTH)
 @CommandParameters(description = "Block all commands for a specific player.", usage = "/<command> <purge | <partialname>>", aliases = "blockcommands,blockcommand")
 public class Command_blockcmd extends TFM_Command
 {
@@ -44,9 +44,9 @@ public class Command_blockcmd extends TFM_Command
             return true;
         }
 
-        if (TFM_AdminList.isSuperAdmin(player))
+        if (TFM_AdminList.isAdmin(player))
         {
-            playerMsg(player.getName() + " is a Superadmin, and cannot have their commands blocked.");
+            playerMsg(player.getName() + " is a Admin, You can't block them!");
             return true;
         }
 
